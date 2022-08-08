@@ -11,8 +11,8 @@ import java.util.Date;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<?> resourceNotFoundException(NotFoundException ex, WebRequest request) {
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<?> resourceNotFoundException(PostNotFoundException ex, WebRequest request) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
