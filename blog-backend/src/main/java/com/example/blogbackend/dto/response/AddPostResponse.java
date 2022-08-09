@@ -10,6 +10,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AddPostResponse {
+    private Long postId;
     private String username;
     private String title;
     private String content;

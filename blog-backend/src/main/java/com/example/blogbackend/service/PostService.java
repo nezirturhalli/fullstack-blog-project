@@ -12,7 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PostService {
@@ -32,6 +34,7 @@ public class PostService {
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
         post.setCreatedOn(Instant.now());
+        post.setUpdatedOn(Instant.now());
         post.setUsername(loggedInUser.getUsername());
         postRepository.save(post);
     }
@@ -49,14 +52,25 @@ public class PostService {
 
     public UpdatePostResponse updatePost(UpdatePostRequest updatePostRequest) {
         var loggedInUser = authService.getCurrentUser().orElseThrow(() -> new UserNotFoundException("User not found!"));
-        var post = new Post();
+        var post = postRepository.findById(updatePostRequest.getPostId()).orElseThrow(
+                () -> new PostNotFoundException("Post not found! " + updatePostRequest.getPostId())
+        );
         post.setPostId(updatePostRequest.getPostId());
         post.setTitle(updatePostRequest.getTitle());
         post.setContent(updatePostRequest.getContent());
         post.setUsername(loggedInUser.getUsername());
         post.setUpdatedOn(Instant.now());
-        var updatedPost = postRepository.saveAndFlush(post);
+        var updatedPost = postRepository.save(post);
         return modelMapper.map(updatedPost, UpdatePostResponse.class);
 
+    }
+
+    public Map<String, Boolean> deletePost(Long postId) {
+        var post = postRepository.findById(postId).orElseThrow(() ->
+                new PostNotFoundException("Post not found!" + postId));
+        postRepository.delete(post);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }

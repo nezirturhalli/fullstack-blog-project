@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/post")
@@ -42,5 +43,10 @@ public class PostController {
     @PutMapping("/update")
     public ResponseEntity<UpdatePostResponse> updatePost(@RequestBody UpdatePostRequest updatePostRequest) {
         return new ResponseEntity<>(postService.updatePost(updatePostRequest), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{postId}")
+    public Map<String, Boolean> deletePost(@PathVariable(value = "postId") Long postId) {
+        return postService.deletePost(postId);
     }
 }
