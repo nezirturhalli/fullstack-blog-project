@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
+import java.util.Date;
 
 @Service
 public class JwtProvider {
@@ -47,21 +48,26 @@ public class JwtProvider {
     }
 
     public boolean validateToken(String jwt) {
-        Jwts.parser().setSigningKey(getPublicKey()).parseClaimsJws(jwt);
-        return true;
+        var claims = Jwts.parserBuilder()
+                .setSigningKey(getPublicKey())
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+        return !claims.getExpiration().before(new Date());
     }
 
     private PublicKey getPublicKey() {
         try {
             return keyStore.getCertificate("springblog").getPublicKey();
         } catch (KeyStoreException e) {
-            throw new SpringBlogException("Exception occured while retrieving public key from keystore");
+            throw new SpringBlogException("Exception occurred while retrieving public key from keystore");
         }
     }
 
     public String getUsernameFromJWT(String token) {
-        Claims claims = Jwts.parser()
+        Claims claims = Jwts.parserBuilder()
                 .setSigningKey(getPublicKey())
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
 

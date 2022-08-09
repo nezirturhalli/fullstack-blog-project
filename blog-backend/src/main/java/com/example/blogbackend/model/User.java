@@ -5,8 +5,6 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,12 +26,6 @@ public class User {
     @Email
     @Column(nullable = false, unique = true)
     private String email;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_posts",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "post_id"))
-    @ToString.Exclude
-    private List<Post> postList = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

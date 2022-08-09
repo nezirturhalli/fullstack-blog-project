@@ -1,12 +1,12 @@
 package com.example.blogbackend.service;
 
+import com.example.blogbackend.dto.request.LoginRequest;
+import com.example.blogbackend.dto.request.RegisterRequest;
+import com.example.blogbackend.dto.response.AuthenticationResponse;
+import com.example.blogbackend.model.User;
 import com.example.blogbackend.repository.UserRepository;
-import com.programming.techie.springngblog.dto.LoginRequest;
-import com.programming.techie.springngblog.dto.RegisterRequest;
-import com.programming.techie.springngblog.model.User;
-import com.programming.techie.springngblog.repository.UserRepository;
-import com.programming.techie.springngblog.security.JwtProvider;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.blogbackend.security.JwtProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,23 +17,20 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private JwtProvider jwtProvider;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final JwtProvider jwtProvider;
 
-    public void signup(RegisterRequest registerRequest) {
+
+    public void signUp(RegisterRequest registerRequest) {
         User user = new User();
-        user.setUserName(registerRequest.getUsername());
+        user.setUsername(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(encodePassword(registerRequest.getPassword()));
-
         userRepository.save(user);
     }
 
@@ -41,7 +38,7 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
-    public AuthenticationResponse login(LoginRequest loginRequest) {
+    public AuthenticationResponse singIn(LoginRequest loginRequest) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);

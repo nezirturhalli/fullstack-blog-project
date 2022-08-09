@@ -21,7 +21,7 @@ import java.util.Objects;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false,name = "id")
+    @Column(nullable = false, updatable = false, name = "id")
     private Long postId;
     @Column(nullable = false)
     private String title;
@@ -32,7 +32,6 @@ public class Post {
     private Instant createdOn;
     @UpdateTimestamp
     private Instant updatedOn;
-    @Column
     private String username;
 
     @Override
@@ -48,14 +47,4 @@ public class Post {
         return getClass().hashCode();
     }
 
-    @ManyToOne(optional = false)
-    private User users;
-
-    public User getUsers() {
-        return users;
-    }
-
-    public void setUsers(User users) {
-        this.users = users;
-    }
 }

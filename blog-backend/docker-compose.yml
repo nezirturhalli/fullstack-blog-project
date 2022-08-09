@@ -1,12 +1,8 @@
 version: '3.8'
-volumes:
-  postgres_data:
-    driver: local
 services:
   postgres:
+    container_name: postgres-blog
     image: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
@@ -14,7 +10,9 @@ services:
     ports:
       - "5432:5432"
   keycloak:
-    image: quay.io/keycloak/keycloak:legacy
+    container_name: keycloak-blog
+    image: jboss/keycloak:15.0.2
+    hostname: keycloak
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: postgres
@@ -26,7 +24,11 @@ services:
       KEYCLOAK_PASSWORD: admin
       # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
       #JDBC_PARAMS: "ssl=true"
+    expose:
+      - 8080
     ports:
-      - "8080:8080"
+        - "18080:8080"
+    restart: unless-stopped
     depends_on:
-      - postgres
+       postgres:
+         condition: service_started
