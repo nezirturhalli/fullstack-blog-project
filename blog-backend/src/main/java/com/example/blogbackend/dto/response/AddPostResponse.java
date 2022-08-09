@@ -9,10 +9,10 @@ import java.time.Instant;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GenericPostResponse {
+public class AddPostResponse {
     private String username;
     private String title;
     private String content;
     private Instant createdOn;
-    private Instant updatedOn;
+
 }

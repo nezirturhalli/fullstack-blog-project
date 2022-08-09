@@ -1,7 +1,9 @@
 package com.example.blogbackend.controller;
 
-import com.example.blogbackend.dto.request.CreatePostRequest;
-import com.example.blogbackend.dto.response.GenericPostResponse;
+import com.example.blogbackend.dto.request.AddPostRequest;
+import com.example.blogbackend.dto.request.UpdatePostRequest;
+import com.example.blogbackend.dto.response.AddPostResponse;
+import com.example.blogbackend.dto.response.UpdatePostResponse;
 import com.example.blogbackend.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,18 +24,23 @@ public class PostController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> createPost(@RequestBody CreatePostRequest postRequest) {
+    public ResponseEntity<?> createPost(@RequestBody AddPostRequest postRequest) {
         postService.createPost(postRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<GenericPostResponse>> showAllPosts() {
+    public ResponseEntity<List<AddPostResponse>> showAllPosts() {
         return new ResponseEntity<>(postService.showAllPosts(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{postId}")
-    public ResponseEntity<GenericPostResponse> getSinglePost(@PathVariable Long postId) {
+    public ResponseEntity<AddPostResponse> getSinglePost(@PathVariable Long postId) {
         return new ResponseEntity<>(postService.getSinglePost(postId), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<UpdatePostResponse> updatePost(@RequestBody UpdatePostRequest updatePostRequest) {
+        return new ResponseEntity<>(postService.updatePost(updatePostRequest), HttpStatus.OK);
     }
 }
