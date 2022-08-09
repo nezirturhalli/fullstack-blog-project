@@ -11,7 +11,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/post")
 @RequestScope
 public class PostController {
 
