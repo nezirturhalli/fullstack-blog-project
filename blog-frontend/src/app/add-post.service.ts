@@ -11,7 +11,7 @@ export class AddPostService {
 
   constructor(private httpClient: HttpClient) {}
   addPost(post: Post): Observable<Object> {
-    return this.httpClient.post(this.url+'add', post);
+    return this.httpClient.post(this.url + 'add', post);
   }
 
   getAllPosts(): Observable<Array<Post>> {
@@ -19,7 +19,7 @@ export class AddPostService {
   }
 
   getPost(postId: Number): Observable<Post> {
-    return this.httpClient.get<Post>(this.url + 'get/' + postId);
+    return this.httpClient.get<Post>(this.url +'get/'+ postId);
   }
 
   updatePost(post: Post): Observable<Post> {
