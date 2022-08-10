@@ -12,6 +12,7 @@ import org.springframework.web.context.annotation.RequestScope;
 @RestController
 @RequestMapping("/api/auth")
 @RequestScope
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
 
     private final AuthService authService;

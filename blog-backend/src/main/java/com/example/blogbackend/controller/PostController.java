@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/post")
 @RequestScope
+@CrossOrigin(origins = "http://localhost:4200")
 public class PostController {
 
     private final PostService postService;
