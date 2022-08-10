@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AddPostService } from '../add-post.service';
+import { Post } from '../add-post/post';
 
 @Component({
   selector: 'app-post',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+  post: Post;
+  postId:Number;
 
-  ngOnInit(): void {
+
+  constructor(private router: ActivatedRoute, private postService: AddPostService) { }
+
+  ngOnInit() {
+    this.router.params.subscribe(params => {
+      this.postId = params['id'];
+    });
+
+    this.postService.getPost(this.postId).subscribe((data:Post) => {
+      this.post = data;
+    },(err: any) => {
+      console.log('Failure Response');
+    })
   }
 
 }

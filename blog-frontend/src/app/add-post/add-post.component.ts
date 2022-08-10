@@ -1,22 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {PostPayload} from './post-payload';
+import { Post } from './post';
 
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
-  styleUrls: ['./add-post.component.css']
+  styleUrls: ['./add-post.component.css'],
 })
 export class AddPostComponent implements OnInit {
-
   addPostForm: FormGroup;
-  postPayload: PostPayload;
+  post: Post;
   title = new FormControl('');
   body = new FormControl('');
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
