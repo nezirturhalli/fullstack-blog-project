@@ -11,7 +11,7 @@ export class AddPostService {
 
   constructor(private httpClient: HttpClient) {}
   addPost(post: Post): Observable<Object> {
-    return this.httpClient.post(this.url, post);
+    return this.httpClient.post(this.url+'add', post);
   }
 
   getAllPosts(): Observable<Array<Post>> {

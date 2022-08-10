@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './post/post.component';
-import { AuthComponent } from './auth/auth.component';
 import { AddPostComponent } from './add-post/add-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -25,7 +24,6 @@ import { AuthGuard } from './auth.guard';
     HeaderComponent,
     HomeComponent,
     PostComponent,
-    AuthComponent,
     AddPostComponent,
     LoginComponent,
     RegisterComponent,
@@ -40,9 +38,9 @@ import { AuthGuard } from './auth.guard';
     EditorModule,
     NgxWebstorageModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', redirectTo: '/', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomeComponent },
-      { path: 'register  ', component: RegisterComponent },
+      { path: 'register', component: RegisterComponent },
       { path: 'post/:id', component: PostComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register-success', component: RegisterSuccessComponent },

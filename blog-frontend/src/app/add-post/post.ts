@@ -1,7 +1,7 @@
 export class Post{
-    id: String;
+    id!: String;
     content!: String;
     title!: String;
-    username: String
+    username!: String;
   }
   
