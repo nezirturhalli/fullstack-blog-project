@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    this.login.username = this.loginForm.get('username').value;
-    this.login.password = this.loginForm.get('password').value;
+    this.login.username = this.loginForm.get('username')!.value;
+    this.login.password = this.loginForm.get('password')!.value;
 
     this.authService.login(this.login).subscribe(data => {
       if (data) {
