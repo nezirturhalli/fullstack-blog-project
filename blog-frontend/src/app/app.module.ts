@@ -16,7 +16,7 @@ import { RegisterSuccessComponent } from './auth/register-success/register-succe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { AuthGuard } from './auth.guard';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomeComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'post/:id', component: PostComponent },
+      { path: 'post/:postId', component: PostComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register-success', component: RegisterSuccessComponent },
       { path: 'home', component: HomeComponent },

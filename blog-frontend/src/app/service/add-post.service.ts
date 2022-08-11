@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Post } from './add-post/post';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Post } from '../models/post';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class AddPostService {
   }
 
   getPost(postId: Number): Observable<Post> {
-    return this.httpClient.get<Post>(this.url +'get/'+ postId);
+    return this.httpClient.get<Post>(this.url + 'get/' + postId);
   }
 
   updatePost(post: Post): Observable<Post> {

@@ -2,10 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs';
-import { JwtAutResponse } from './jwt-auth-response';
-import { Login } from './login';
 import { map } from 'rxjs/operators';
-import { Register } from './register';
+import { JwtAutResponse } from '../models/jwt-auth-response';
+import { Login } from '../models/login';
+import { Register } from '../models/register';
 
 @Injectable({
   providedIn: 'root',
