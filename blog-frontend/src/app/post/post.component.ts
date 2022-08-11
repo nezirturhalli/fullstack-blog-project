@@ -14,12 +14,14 @@ export class PostComponent implements OnInit {
 
   constructor(
     private router: ActivatedRoute,
-    private route: ActivatedRoute,
     private postService: AddPostService
   ) {}
 
   ngOnInit() {
-    this.postId = this.route.snapshot.params['id'];
+    // this.postId = this.router.snapshot.params['id'];
+    this.router.params.subscribe((params) => {
+      this.postId = params['id'];
+    });
     this.postService.getPost(this.postId).subscribe(
       (data: Post) => {
         this.post = data;
