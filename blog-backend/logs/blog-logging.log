@@ -164,3 +164,4 @@
 2022-08-11 15:18:28,963 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BlogBackendApplication in 6.404 seconds (JVM running for 7.891)
 2022-08-11 15:20:29,607 INFO org.apache.juli.logging.DirectJDKLog [http-nio-12120-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-08-11 15:20:29,608 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-12120-exec-2] Initializing Servlet 'dispatcherServlet'
+2022-08-11 15:20:29,614 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-12120-exec-2] Completed initialization in 5 ms
