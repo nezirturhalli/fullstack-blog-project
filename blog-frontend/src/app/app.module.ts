@@ -41,7 +41,7 @@ import { AuthGuard } from './guard/auth.guard';
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '', component: HomeComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'post/:postId', component: PostComponent },
+      { path: 'post/:id', component: PostComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register-success', component: RegisterSuccessComponent },
       { path: 'home', component: HomeComponent },

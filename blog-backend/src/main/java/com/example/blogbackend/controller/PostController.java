@@ -37,7 +37,7 @@ public class PostController {
     }
 
     @GetMapping("/get/{postId}")
-    public ResponseEntity<AddPostResponse> getSinglePost(@PathVariable Long postId) {
+    public ResponseEntity<AddPostResponse> getSinglePost(@PathVariable (value = "postId") Long postId) {
         return new ResponseEntity<>(postService.getSinglePost(postId), HttpStatus.OK);
     }
 

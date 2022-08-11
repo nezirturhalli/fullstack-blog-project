@@ -22,7 +22,7 @@ export class AddPostComponent implements OnInit {
       body: this.body
     });
     this.post = {
-      id: '',
+      id: 0,
       content: '',
       title: '',
       username: ''
