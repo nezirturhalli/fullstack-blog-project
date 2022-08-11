@@ -10,7 +10,7 @@ import { AddPostService } from '../service/add-post.service';
 })
 export class PostComponent implements OnInit {
   post: Post;
-  postId: Number;
+  postId: number;
 
   constructor(
     private router: ActivatedRoute,
@@ -20,7 +20,7 @@ export class PostComponent implements OnInit {
   ngOnInit() {
     // this.postId = this.router.snapshot.params['id'];
     this.router.params.subscribe((params) => {
-      this.postId = params['id'];
+      this.postId = params['postId'];
     });
     this.postService.getPost(this.postId).subscribe(
       (data: Post) => {

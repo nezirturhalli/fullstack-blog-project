@@ -9,10 +9,10 @@ import { Post } from '../models/post';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  posts: Observable<Array<Post>>;
+  posts: Post[];
   constructor(private postService: AddPostService) {}
 
   ngOnInit() {
-    this.posts = this.postService.getAllPosts();
+    this.postService.getAllPosts().subscribe((data) => (this.posts = data));
   }
 }

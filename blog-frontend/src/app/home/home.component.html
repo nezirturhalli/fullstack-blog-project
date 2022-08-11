@@ -1,19 +1,26 @@
-<div class="content">
+  <div class="content">
     <div class="container">
-      <div class="row" *ngFor="let post of posts| async">
+      <div class="row" *ngFor="let post of posts">
         <div class="blogpost">
-          <h3><a href="/post/{{post.id}}" class="blog-title">{{post.title}}</a></h3>
+          <h3>
+            <h1>{{ post.title }}</h1>
+          </h3>
           <div>
-            <i class="fas fa-user"></i> Author: <p>{{post.username}}</p>
+            <i class="fas fa-user"></i> Author: 
+            <p>{{ post.username }}</p>
           </div>
           <p [innerHTML]="post.content"></p>
           <div>
-            <a type="button" href="/post/{{post.id}}" class="read-more btn btn-default">Read More</a>
+            <a
+              type="button"
+              href="/post/{{ post.postId }}"
+              class="read-more btn btn-info"
+              >Read More</a
+            >
           </div>
-          <hr>
+          <hr />
         </div>
-        <hr>
+        <hr />
       </div>
     </div>
   </div>
-  
