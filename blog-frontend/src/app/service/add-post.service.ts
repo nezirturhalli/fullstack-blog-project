@@ -15,11 +15,11 @@ export class AddPostService {
     return this.httpClient.post(this.url + 'add', post);
   }
 
-  getAllPosts(): Observable<Array<Post>> {
+  getAllPosts(): Observable<Post[]> {
     return this.httpClient.get<Array<Post>>(this.url + 'all');
   }
 
-  getPost(postId: Number): Observable<Post> {
+  getPost(postId: number): Observable<Post> {
     return this.httpClient.get<Post>(this.url + 'get/' + postId);
   }
 
@@ -27,7 +27,7 @@ export class AddPostService {
     return this.httpClient.put<Post>(this.url + 'update', post);
   }
 
-  removePost(postId: Number): Observable<Post> {
+  removePost(postId: number): Observable<Post> {
     return this.httpClient.delete<Post>(this.url + postId);
   }
 }

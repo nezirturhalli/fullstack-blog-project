@@ -10,6 +10,9 @@
         <hr />
         <p [innerHTML]="post.content"></p>
         <hr />
+        <td><button (click)="deletePost(postId)" class="btn btn-danger">Delete</button>
+          <button (click)="updatePost(postId)" class="btn btn-info" style="margin-left: 10px">Update</button>
+      </td>
       </div>
     </div>
   </div>

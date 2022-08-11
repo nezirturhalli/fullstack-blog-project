@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Post } from '../models/post';
 import { AddPostService } from '../service/add-post.service';
 
@@ -10,25 +11,45 @@ import { AddPostService } from '../service/add-post.service';
 })
 export class PostComponent implements OnInit {
   post: Post;
+  posts: Observable<Post[]>;
   postId: number;
 
   constructor(
     private router: ActivatedRoute,
+    private route: Router,
     private postService: AddPostService
   ) {}
 
-  ngOnInit() {
-    // this.postId = this.router.snapshot.params['id'];
+  ngOnInit(): void {
     this.router.params.subscribe((params) => {
       this.postId = params['postId'];
     });
     this.postService.getPost(this.postId).subscribe(
-      (data: Post) => {
+      (data) => {
         this.post = data;
       },
       (err: any) => {
         console.log('Failure Response');
       }
     );
+   
+  }
+
+  deletePost(postId: number) {
+    this.postService.removePost(postId).subscribe(
+      (data) => {
+        console.log(data);
+        this.goHomePage();
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  goHomePage() {
+    this.route.navigate(['home']);
+  }
+
+  updatePost(postId: number) {
+    this.route.navigate(['update', postId]);
   }
 }
